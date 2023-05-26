@@ -1,25 +1,30 @@
-import React, {useState} from 'react'
-import Form from './components/Form'
- 
-function App() {
-const [formdata,setformdata] = useState({username:'',password:''})
+import React, { useState } from "react";
+import Form from "./components/Form";
+// import './index.css';
 
-console.log(formdata);
-function handleChange(e){
-    console.log(e.target.name);
-setformdata({
-    ...formdata,[e.target.name]:(e.target.value)
-})
-}
+function App() {
+  const [formdata, setformdata] = useState({ username: "", password: "" });
+
+  function handleChange(e) {
+    setformdata({
+      ...formdata,
+      [e.target.name]: e.target.value,
+    });
+  }
+
+  function onSubmitForm(e) {
+    e.preventDefault()
+    console.log(formdata.username, formdata.password);
+  }
   return (
     <div>
-        <Form 
+      <Form
         formdata={formdata}
-        handleChange= {handleChange}
-
-        />     
+        handleChange={handleChange}
+        onSubmitForm={onSubmitForm}
+      />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
